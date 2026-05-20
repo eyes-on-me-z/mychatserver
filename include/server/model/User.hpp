@@ -2,6 +2,7 @@
 
 #include <string>
 
+// User表的ORM类
 class User
 {
 public:
@@ -16,10 +17,10 @@ public:
 
     int getId() const { return _id; }
     std::string getName() const { return _name; }
-    std::string getPwd() { return _password; }
-    std::string getState() { return _state; }
+    std::string getPwd() const { return _password; }
+    std::string getState() const { return _state; }
 
-private:
+protected:
     int _id;
     std::string _name;
     std::string _password;

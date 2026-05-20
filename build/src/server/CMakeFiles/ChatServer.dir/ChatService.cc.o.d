@@ -252,6 +252,8 @@ src/server/CMakeFiles/ChatServer.dir/ChatService.cc.o: \
  /usr/include/c++/13/bits/basic_ios.tcc /usr/include/c++/13/ostream \
  /usr/include/c++/13/bits/ostream.tcc \
  /usr/include/c++/13/bits/istream.tcc \
+ /home/li/vs_code/learn_linux/mychatserver/include/server/model/UserModel.hpp \
+ /home/li/vs_code/learn_linux/mychatserver/include/server/model/User.hpp \
  /home/li/vs_code/learn_linux/mychatserver/include/Public.hpp \
  /usr/local/include/mymuduo/Timestamp.h \
  /usr/local/include/mymuduo/Logging.h \

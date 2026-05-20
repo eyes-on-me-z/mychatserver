@@ -1,5 +1,6 @@
 #include "ChatService.hpp"
 #include "Public.hpp"
+#include "User.hpp"
 
 #include <mymuduo/Timestamp.h>
 #include <mymuduo/Logging.h>
@@ -48,7 +49,26 @@ void ChatService::login(const TcpConnectionPtr&, json &js, Timestamp)
 }
 
 // 处理注册业务
-void ChatService::reg(const TcpConnectionPtr&, json &js, Timestamp)
+void ChatService::reg(const TcpConnectionPtr &conn, json &js, Timestamp time)
 {
-    LOG_INFO << "do reg";
+    std::string name = js["name"];
+    std::string pwd = js["password"];
+
+    User user;
+    user.setName(name);
+    user.setPwd(pwd);
+    bool state = _userModel.insert(user);
+
+    json response;
+    response["msgid"] = REG_MSG_ACK;
+    if (state)  // 注册成功
+    {
+        response["errno"] = 0;
+        response["id"] = user.getId();
+    }
+    else    // 注册失败
+    {
+        response["errno"] = 1;
+    }
+    conn->send(response.dump());
 }

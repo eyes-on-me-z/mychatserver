@@ -5,6 +5,7 @@
 #include <unordered_map>
 
 #include "json.hpp"
+#include "UserModel.hpp"
 
 using json = nlohmann::json;
 
@@ -28,4 +29,6 @@ private:
 
     // 存储消息id和其对应的业务处理方法
     std::unordered_map<int, MsgHandler> _msgHandlerMap;
+
+    UserModel _userModel;
 };

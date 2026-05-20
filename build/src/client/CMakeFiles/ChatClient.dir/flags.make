@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/li/vs_code/learn_linux/mychatserver/include -I/home/li/vs_code/learn_linux/mychatserver/include/server -I/home/li/vs_code/learn_linux/mychatserver/thirdparty
+CXX_INCLUDES = -I/home/li/vs_code/learn_linux/mychatserver/include -I/home/li/vs_code/learn_linux/mychatserver/include/server -I/home/li/vs_code/learn_linux/mychatserver/include/server/datalib -I/home/li/vs_code/learn_linux/mychatserver/include/server/model -I/home/li/vs_code/learn_linux/mychatserver/thirdparty
 
 CXX_FLAGS = -g
 

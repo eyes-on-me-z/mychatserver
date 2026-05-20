@@ -178,6 +178,30 @@ ChatService.cc.s:
 	cd /home/li/vs_code/learn_linux/mychatserver/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/ChatServer.dir/build.make src/server/CMakeFiles/ChatServer.dir/ChatService.cc.s
 .PHONY : ChatService.cc.s
 
+datalib/DataLib.o: datalib/DataLib.cc.o
+.PHONY : datalib/DataLib.o
+
+# target to build an object file
+datalib/DataLib.cc.o:
+	cd /home/li/vs_code/learn_linux/mychatserver/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/ChatServer.dir/build.make src/server/CMakeFiles/ChatServer.dir/datalib/DataLib.cc.o
+.PHONY : datalib/DataLib.cc.o
+
+datalib/DataLib.i: datalib/DataLib.cc.i
+.PHONY : datalib/DataLib.i
+
+# target to preprocess a source file
+datalib/DataLib.cc.i:
+	cd /home/li/vs_code/learn_linux/mychatserver/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/ChatServer.dir/build.make src/server/CMakeFiles/ChatServer.dir/datalib/DataLib.cc.i
+.PHONY : datalib/DataLib.cc.i
+
+datalib/DataLib.s: datalib/DataLib.cc.s
+.PHONY : datalib/DataLib.s
+
+# target to generate assembly for a file
+datalib/DataLib.cc.s:
+	cd /home/li/vs_code/learn_linux/mychatserver/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/ChatServer.dir/build.make src/server/CMakeFiles/ChatServer.dir/datalib/DataLib.cc.s
+.PHONY : datalib/DataLib.cc.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -202,6 +226,30 @@ main.cpp.s:
 	cd /home/li/vs_code/learn_linux/mychatserver/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/ChatServer.dir/build.make src/server/CMakeFiles/ChatServer.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+model/UserModel.o: model/UserModel.cc.o
+.PHONY : model/UserModel.o
+
+# target to build an object file
+model/UserModel.cc.o:
+	cd /home/li/vs_code/learn_linux/mychatserver/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/ChatServer.dir/build.make src/server/CMakeFiles/ChatServer.dir/model/UserModel.cc.o
+.PHONY : model/UserModel.cc.o
+
+model/UserModel.i: model/UserModel.cc.i
+.PHONY : model/UserModel.i
+
+# target to preprocess a source file
+model/UserModel.cc.i:
+	cd /home/li/vs_code/learn_linux/mychatserver/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/ChatServer.dir/build.make src/server/CMakeFiles/ChatServer.dir/model/UserModel.cc.i
+.PHONY : model/UserModel.cc.i
+
+model/UserModel.s: model/UserModel.cc.s
+.PHONY : model/UserModel.s
+
+# target to generate assembly for a file
+model/UserModel.cc.s:
+	cd /home/li/vs_code/learn_linux/mychatserver/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/ChatServer.dir/build.make src/server/CMakeFiles/ChatServer.dir/model/UserModel.cc.s
+.PHONY : model/UserModel.cc.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -217,9 +265,15 @@ help:
 	@echo "... ChatService.o"
 	@echo "... ChatService.i"
 	@echo "... ChatService.s"
+	@echo "... datalib/DataLib.o"
+	@echo "... datalib/DataLib.i"
+	@echo "... datalib/DataLib.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... model/UserModel.o"
+	@echo "... model/UserModel.i"
+	@echo "... model/UserModel.s"
 .PHONY : help
 
 

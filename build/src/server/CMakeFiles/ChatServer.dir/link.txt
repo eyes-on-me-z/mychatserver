@@ -1,1 +1,1 @@
-/usr/bin/c++ -g -rdynamic CMakeFiles/ChatServer.dir/ChatServer.cc.o CMakeFiles/ChatServer.dir/ChatService.cc.o CMakeFiles/ChatServer.dir/main.cpp.o -o /home/li/vs_code/learn_linux/mychatserver/bin/ChatServer  -lmymuduo 
+/usr/bin/c++ -g -rdynamic CMakeFiles/ChatServer.dir/ChatServer.cc.o CMakeFiles/ChatServer.dir/ChatService.cc.o CMakeFiles/ChatServer.dir/main.cpp.o CMakeFiles/ChatServer.dir/datalib/DataLib.cc.o CMakeFiles/ChatServer.dir/model/UserModel.cc.o -o /home/li/vs_code/learn_linux/mychatserver/bin/ChatServer  -lmymuduo -lmysqlclient 
