@@ -1,1 +1,0 @@
-/usr/bin/c++ -g -rdynamic CMakeFiles/ChatClient.dir/main.cc.o -o /home/li/vs_code/learn_linux/mychatserver/bin/ChatClient 
