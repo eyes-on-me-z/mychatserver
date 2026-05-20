@@ -15,7 +15,7 @@ public:
     void start();
 
 private:
-    // 上报链接相关信息的回调函数
+    // 上报连接相关信息的回调函数
     void onConnection(const TcpConnectionPtr &conn);
 
     // 上报读写事件相关信息的回调函数

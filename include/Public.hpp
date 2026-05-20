@@ -3,6 +3,7 @@
 /*
 server和client的公共文件
 */
+// 消息类型
 enum EnMsgType
 {
     LOGIN_MSG = 1,  // 登录消息

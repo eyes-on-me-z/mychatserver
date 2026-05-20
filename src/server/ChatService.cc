@@ -57,7 +57,7 @@ void ChatService::reg(const TcpConnectionPtr &conn, json &js, Timestamp time)
     User user;
     user.setName(name);
     user.setPwd(pwd);
-    bool state = _userModel.insert(user);
+    bool state = _userModel.insert(user);   // 插入用户的时候会设置用户id，state默认是offline
 
     json response;
     response["msgid"] = REG_MSG_ACK;

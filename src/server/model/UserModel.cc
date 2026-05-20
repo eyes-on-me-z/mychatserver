@@ -15,6 +15,7 @@ bool UserModel::insert(User &user)
     {
         if(mysql.update(sql))
         {
+            // 获取插入成功的用户数据生成的id
             user.setId(mysql_insert_id(mysql.getConnection()));
             return true;
         }
