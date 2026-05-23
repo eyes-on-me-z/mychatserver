@@ -1,11 +1,12 @@
 #include "UserModel.hpp"
-#include "DataLib.hpp"
+#include "Database.hpp"
 
 #include <iostream>
 
 // User表的增加方法
 bool UserModel::insert(User &user)
 {
+    // 只有注册业务会向数据库users中插入user
     char sql[1024] = {0};
     sprintf(sql, "insert into users(name, password, state) values('%s', '%s', '%s')",
             user.getName().c_str(), user.getPwd().c_str(), user.getState().c_str());
