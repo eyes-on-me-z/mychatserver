@@ -5,6 +5,7 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "/usr/local/include/mymuduo",
+                "./include/server/**",
                 "./thirdparty"
             ],
             "defines": [],

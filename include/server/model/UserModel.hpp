@@ -2,7 +2,7 @@
 
 #include "User.hpp"
 
-// User表的数据操作类
+// User表的数据操作类，用来操作用户类
 class UserModel
 {
 public:

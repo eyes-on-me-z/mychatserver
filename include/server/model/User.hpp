@@ -3,6 +3,7 @@
 #include <string>
 
 // User表的ORM类
+// 用来描述一个用户的属性
 class User
 {
 public:

@@ -3,7 +3,7 @@
 #include <mysql/mysql.h>
 #include <string>
 
-// 数据库操作类
+// 数据库操作类，所有需要使用数据库的地方都需要导入这个文件
 class MySQL
 {
 public:
