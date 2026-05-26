@@ -24,6 +24,8 @@ public:
     // 往_users中插入群成员，我觉得应该写个插入群成员函数
     std::vector<GroupUser> &getUsers() { return _users; }
 
+    const std::vector<GroupUser>& getUsers() const { return _users; }
+
 private:
     int _id;                        // 群id
     std::string _name;              // 群名字
