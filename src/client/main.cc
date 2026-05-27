@@ -104,7 +104,13 @@ int main(int argc, char *argv[])
                   << "3. quit" << std::endl;
         std::cout << "========================" << std::endl;
         int choice = 0;
-        std::cin >> choice;
+        if (!(std::cin >> choice))  // 处理用户输入非数字情况
+        {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cerr << "invalid input!" << std::endl;
+            continue;
+        }
         std::cin.get();     // 读掉缓冲区残留的回车，避免下一次读取时直接读到回车。
 
         switch(choice)
@@ -127,7 +133,7 @@ int main(int argc, char *argv[])
 
             g_isLoginSuccess = false;
 
-            int len = send(clientfd, request.c_str(), request.size() + 1, 0);
+            int len = send(clientfd, request.c_str(), request.size(), 0);
             if (len == -1)
             {
                 std::cerr << "send login message error: " << request << std::endl;
@@ -157,7 +163,7 @@ int main(int argc, char *argv[])
             js["password"] = pwd;
             std::string request = js.dump();
 
-            int len = send(clientfd, request.c_str(), request.size() + 1, 0);
+            int len = send(clientfd, request.c_str(), request.size(), 0);
             if (len == -1)
             {
                 std::cerr << "send register message error: " << request << std::endl;
@@ -246,7 +252,7 @@ void doLoginResponse(json &responseJs)
                     user.setId(js["id"].get<int>());
                     user.setName(js["name"]);
                     user.setState(js["state"]);
-                    user.setState(js["role"]);
+                    user.setRole(js["role"]);
                     group.getUsers().push_back(std::move(user));
                 }
                 g_currentUserGroupList.push_back(std::move(group));
@@ -292,9 +298,21 @@ void readTaskHandler(int clientfd)
             close(clientfd);
             exit(-1);
         }
-
+        std::string strRecv(buffer, len);
+        
         // 接收ChatServer转发的数据，反序列化生成json数据对象
-        json js = json::parse(buffer);
+        json js;
+        try     // 处理json解析异常，防止服务端挂掉
+        {
+            js = json::parse(strRecv);
+        }
+        catch (const nlohmann::json::parse_error &e)
+        {
+            std::cerr << "json parse error: " << e.what()
+              << "\nraw: " << buffer << std::endl;
+            continue;
+        }
+
         int msgType = js["msgid"].get<int>();
         if (msgType == ONE_CHAT_MSG)
         {
@@ -385,7 +403,7 @@ std::unordered_map<std::string, std::string> commandMap = {
     {"creategroup", "创建群组, 格式creategroup:groupname:groupdesc"},
     {"addgroup", "加入群组, 格式addgroup:groupid"},
     {"groupchat", "群聊, 格式groupchat:groupid:message"},
-    {"logout", "注销, 格式loginout"}
+    {"logout", "注销, 格式logout"}
 };
 
 // 注册系统支持的客户端命令处理
@@ -452,7 +470,7 @@ void addFriend(int clientfd, std::string str)
     js["friendid"] = atoi(str.c_str());
     std::string buffer = js.dump();
 
-    int len = send(clientfd, buffer.c_str(), buffer.size() + 1, 0);
+    int len = send(clientfd, buffer.c_str(), buffer.size(), 0);
     if (len == -1)
     {
         std::cerr << "send addfriend message error -> " << buffer << std::endl;
@@ -478,7 +496,7 @@ void chat(int clientfd, std::string str)
     js["time"] = getCurrentTime();
     std::string buffer = js.dump();
 
-    int len = send(clientfd, buffer.c_str(), buffer.size() + 1, 0);
+    int len = send(clientfd, buffer.c_str(), buffer.size(), 0);
     if (len == -1)
     {
         std::cerr << "send chat message error -> " << buffer << std::endl;
@@ -502,7 +520,7 @@ void createGroup(int clientfd, std::string str)
     js["groupdesc"] = str.substr(idx + 1, str.size() - idx - 1);
     std::string buffer = js.dump();
 
-    int len = send(clientfd, buffer.c_str(), buffer.size() + 1, 0);
+    int len = send(clientfd, buffer.c_str(), buffer.size(), 0);
     if (len == -1)
     {
         std::cerr << "send creategroup message error -> " << buffer << std::endl;
@@ -518,7 +536,7 @@ void addGroup(int clientfd, std::string str)
     js["groupid"] = atoi(str.c_str());
     std::string buffer = js.dump();
 
-    int len = send(clientfd, buffer.c_str(), buffer.size() + 1, 0);
+    int len = send(clientfd, buffer.c_str(), buffer.size(), 0);
     if (len == -1)
     {
         std::cerr << "send addgroup message error -> " << buffer << std::endl;
@@ -544,7 +562,7 @@ void groupChat(int clientfd, std::string str)
     js["time"] = getCurrentTime();
     std::string buffer = js.dump();
 
-    int len = send(clientfd, buffer.c_str(), buffer.size() + 1, 0);
+    int len = send(clientfd, buffer.c_str(), buffer.size(), 0);
     if (len == -1)
     {
         std::cerr << "send groupchat message error -> " << buffer << std::endl;
@@ -559,7 +577,7 @@ void logout(int clientfd, std::string)
     js["id"] = g_currentUser.getId();
     std::string buffer = js.dump();
 
-    int len = send(clientfd, buffer.c_str(), buffer.size() + 1, 0);
+    int len = send(clientfd, buffer.c_str(), buffer.size(), 0);
     if (len == -1)
     {
         std::cerr << "send logout message error -> " << buffer << std::endl;

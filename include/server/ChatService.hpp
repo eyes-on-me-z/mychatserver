@@ -27,6 +27,9 @@ public:
     // 处理客户端异常退出
     void clientCloseException(const TcpConnectionPtr&);
 
+    // 服务器异常，业务重置方法
+    void reset();
+
 private:
     ChatService();
 
@@ -53,9 +56,6 @@ private:
 
     // 处理注销业务
     void logout(const TcpConnectionPtr&, json&, Timestamp);
-
-    // 服务器异常，业务重置方法
-    void reset();
 
     // 存储消息id和其对应的业务处理方法
     std::unordered_map<int, MsgHandler> _msgHandlerMap;

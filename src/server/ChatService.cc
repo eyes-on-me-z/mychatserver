@@ -3,6 +3,7 @@
 
 #include <mymuduo/Timestamp.h>
 #include <mymuduo/Logging.h>
+#include <iostream>
 
 using namespace std::placeholders;
 
@@ -259,7 +260,7 @@ void ChatService::groupChat(const TcpConnectionPtr&, json &js, Timestamp)
         else
         {
             // 存储离线群消息
-            _offlineMsgModel.insert(userId, js.dump());
+            _offlineMsgModel.insert(id, js.dump());
         }
     }
 }
