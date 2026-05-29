@@ -10,6 +10,7 @@
 #include "FriendModel.hpp"
 #include "GroupModel.hpp"
 #include "OfflineMsgModel.hpp"
+#include "Redis.hpp"
 
 using json = nlohmann::json;
 using MsgHandler = std::function<void(const TcpConnectionPtr&, json&, Timestamp)>;
@@ -57,6 +58,10 @@ private:
     // 处理注销业务
     void logout(const TcpConnectionPtr&, json&, Timestamp);
 
+    // 从redis消息队列中获取订阅的消息
+    void handleRedisSubscribeMessage(int, std::string);
+
+
     // 存储消息id和其对应的业务处理方法
     std::unordered_map<int, MsgHandler> _msgHandlerMap;
     // 存储在线用户的通信连接
@@ -70,4 +75,7 @@ private:
     FriendModel _friendModel;
     GroupModel _groupModel;
     OfflineMsgModel _offlineMsgModel;
+
+    // redis操作对象
+    Redis _redis;
 };
