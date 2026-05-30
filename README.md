@@ -3,6 +3,7 @@
 
 服务器1启动command: export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
                     ./bin/ChatServer 127.0.0.1 6000
+					
 服务器2启动command: export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
                     ./bin/ChatServer 127.0.0.1 6002
 
