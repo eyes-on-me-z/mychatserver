@@ -1,5 +1,5 @@
 # mychatserver
-基于mymuduo网络库的集群聊天服务器
+基于[mymuduo](https://github.com/eyes-on-me-z/mymuduo)网络库的集群聊天服务器
 
 服务器1启动command: export LD_LIBRARY_PATH=/usr/local/lib:\$LD_LIBRARY_PATH
                     						./bin/ChatServer 127.0.0.1 6000
